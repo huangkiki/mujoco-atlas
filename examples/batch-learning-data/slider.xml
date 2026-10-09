@@ -1,0 +1,18 @@
+<mujoco model="atlas_batch_slider">
+  <compiler angle="radian"/>
+  <option timestep="0.002" gravity="0 0 0" integrator="Euler" solver="Newton"/>
+  <worldbody>
+    <body name="carriage" pos="0 0 0">
+      <joint name="slide" type="slide" axis="1 0 0" damping="0.1"/>
+      <geom name="carriage_geom" type="box" size="0.02 0.02 0.02" mass="1"
+            contype="0" conaffinity="0"/>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="drive" joint="slide" gear="1" ctrllimited="true" ctrlrange="-1 1"/>
+  </actuator>
+  <sensor>
+    <jointpos name="position" joint="slide"/>
+    <jointvel name="velocity" joint="slide"/>
+  </sensor>
+</mujoco>

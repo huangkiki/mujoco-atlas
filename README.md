@@ -6,7 +6,7 @@
 
 这是 **[Sim Atlas · 仿真图谱](https://github.com/huangkiki/sim-atlas)** 的独立社区学习仓库，重点覆盖 MJCF、mjSpec/mjModel/mjData、驱动器与约束、flex/IPC、原生与 GPU 后端。
 
-提供两条完整路线：**A 应用路线**从对象与建模走向控制、机器人、传感器、学习接口与数据；**B 原理与源码路线**解释动力学、接触模型、求解器、积分、观测及扩展。已交付首篇导读、E1 建模/坐标/状态/时间、E2 驱动/机器人/任务、E3 动力学/接触/求解/力观测、E4 传感器/相机/渲染专题与固定版本源码地图，完整课程仍在开发。
+提供两条完整路线：**A 应用路线**从对象与建模走向控制、机器人、传感器、学习接口与数据；**B 原理与源码路线**解释动力学、接触模型、求解器、积分、观测及扩展。已交付首篇导读、E1 建模/坐标/状态/时间、E2 驱动/机器人/任务、E3 动力学/接触/求解/力观测、E4 传感器/相机/渲染、E5 批量/学习/数据专题与固定版本源码地图，完整课程仍在开发。
 
 ## 从这里开始
 
@@ -15,8 +15,9 @@
 3. 阅读 [E2 驱动与控制](docs/actuation-and-control.md)、[机器人运动学](docs/robotics-and-kinematics.md)、[任务接口](docs/task-interfaces.md)，从控制输入追到原生执行与可靠阶段转移。
 4. 阅读 [E3 动力学执行链](docs/dynamics-and-pipeline.md)、[接触模型](docs/contact-models.md)、[求解与积分](docs/solvers-and-integration.md)、[力观测](docs/force-observations.md)，把配置、算法与读数契约连起来。
 5. 阅读 [E4 传感与采样](docs/sensors-and-sampling.md)、[相机与几何查询](docs/cameras-and-geometry-queries.md)、[渲染与 viewer](docs/rendering-and-viewer.md)，区分读数、射线、图像、窗口及其时序与资源。
-6. 跟随[源码地图](docs/source-map.md)，在固定提交中核对原生字段、配置和执行路径。
-7. 按[课程路线](docs/curriculum.md)选择应用或原理专题；需要环境时看[安装说明](docs/installation.md)。
+6. 阅读 [E5 CPU批量](docs/cpu-batching.md)、[MJX与设备数据](docs/mjx-and-device-data.md)、[学习与随机化](docs/learning-and-randomization.md)、[记录与回放](docs/recording-and-replay.md)，明确世界隔离、任务时序、随机参数与恢复边界。
+7. 跟随[源码地图](docs/source-map.md)，在固定提交中核对原生字段、配置和执行路径。
+8. 按[课程路线](docs/curriculum.md)选择应用或原理专题；需要环境时看[安装说明](docs/installation.md)。
 
 当前先完成引擎知识体系与源码课程。最小 API 片段服务于理解，运行状态逐项注明；本轮没有新增仿真实验、训练、基准或独立评分器。后续实验复用 [DexLab](https://github.com/huangkiki/Dexlab) 的版本、配置和工况记录。
 
@@ -27,6 +28,8 @@ E2 已展开 A3/A5/A7，包括多输入 actuator、限幅顺序、原生 Jacobia
 E3 已完成 A4/B0–B5 的主线课程，包括本版材料组合、三类 solver 的实际终止与 warmstart、五种积分器/有效 metric、净接触力与 frame/时点；[验证记录](docs/validation/e3.md)仅为源码与静态验收，无接触/求解实验。Flex/IPC 内循环与 GPU 后端扩展仍留 E6。
 
 E4 已完成 A6 原生传感、history、相机投影/几何查询、classic RGB/depth/分割与 viewer/headless 生命周期；附固定版本差异和 Filament 接口边界。[验证记录](docs/validation/e4.md)与[原创片段](examples/sensing-rendering/README.md)仅为源码和静态验收，没有 import 引擎或创建渲染 context。
+
+E5 已完成 A8/A9 与 B6 的批量/JIT/传输/数据主线，明确原生CPU、MJX JAX、MJX Warp与外部学习系统的身份；含32道带答案练习。[验证记录](docs/validation/e5.md)和[原创批量片段](examples/batch-learning-data/README.md)仅为源码与静态验收，没有运行批量、JIT、随机化、训练或数据生成。JAX另固定阅读来源，不宣称依赖组合已运行验证；完整插件/flex/IPC与后端扩展仍属E6。
 
 ## 维护与来源
 

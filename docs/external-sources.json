@@ -1,0 +1,33 @@
+{
+  "scope": "JAX language/API source study only; not a validated runtime environment or a MuJoCo dependency lock",
+  "sources": [
+    {
+      "upstream": "jax-ml/jax",
+      "version": "0.7.2",
+      "tag": "jax-v0.7.2",
+      "commit": "94233144f5469af28c065aa4263a6849338eeaa1",
+      "files": [
+        {
+          "path": "jax/_src/api.py",
+          "git_blob": "eea84907381c3938a90273face73c1742d60833a"
+        },
+        {
+          "path": "jax/_src/random.py",
+          "git_blob": "0ba2b54b4c713640624d4ab0c1af18c218148fbb"
+        },
+        {
+          "path": "docs/random-numbers.md",
+          "git_blob": "5562dc3f43d52abd2c942ad6ddf2bcf131a71ecb"
+        },
+        {
+          "path": "docs/jit-compilation.md",
+          "git_blob": "a4e2f8b41f0d852239b2a09a9f44105983a79c62"
+        },
+        {
+          "path": "docs/default_dtypes.md",
+          "git_blob": "629f7fb5c314fea9bd395eb0a305f9452c0b50dc"
+        }
+      ]
+    }
+  ]
+}

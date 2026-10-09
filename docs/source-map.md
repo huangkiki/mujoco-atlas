@@ -73,3 +73,28 @@ E3 同时逐段核对既有 forward/collision/constraint/solver/core_smooth/core
 | [src/engine/engine_collision_sdf.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_collision_sdf.c) | E4：tactile 依赖的形状距离分派及不支持类型 |
 
 E4 同时深入读取既有 engine_sensor 的内置/用户/plugin 分派、contact/tactile 和 history，user_api/user_objects 的维度/阶段/内参编译，以及 support/forward 的查询和历史读写。文档/实现差异与真实静态验收见[验证记录](validation/e4.md)。只下载但未作为结论依据的文件没有冒充已完成专题。
+
+## E5 批量、学习与数据
+
+| 源码文件 | 阅读目的 |
+|---|---|
+| [doc/mjx.rst](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/doc/mjx.rst) | E5：MJX结构字段、批量/设备布局与Warp图模式；按实现限定支持范围 |
+| [mjx/mujoco/mjx/_src/dataclasses.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/_src/dataclasses.py) | E5：pytree leaves/metadata与冻结replace语义 |
+| [mjx/mujoco/mjx/_src/forward.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/_src/forward.py) | E5：真实后端/积分器分派、actuation与history推进边界 |
+| [mjx/mujoco/mjx/_src/io.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/_src/io.py) | E5：默认backend、模型兼容检查、上传/读回、容量和state打包 |
+| [mjx/mujoco/mjx/_src/sensor.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/_src/sensor.py) | E5：JAX传感执行与CPU history/delay/interval语义区别 |
+| [mjx/mujoco/mjx/_src/types.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/_src/types.py) | E5：静态/动态字段、枚举与Data.where广播规则 |
+| [mjx/mujoco/mjx/third_party/mujoco_warp/_src/forward.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/third_party/mujoco_warp/_src/forward.py) | E5：按world ID循环选取批量模型参数 |
+| [mjx/mujoco/mjx/third_party/mujoco_warp/_src/io.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/third_party/mujoco_warp/_src/io.py) | E5：模型batch_sizes以及总池/每世界容量分配 |
+| [mjx/mujoco/mjx/third_party/mujoco_warp/_src/set_const.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/third_party/mujoco_warp/_src/set_const.py) | E5：Warp特定派生常量更新和restore范围 |
+| [mjx/mujoco/mjx/third_party/mujoco_warp/pyproject.toml](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/third_party/mujoco_warp/pyproject.toml) | E5：vendored元数据3.14.0与外部发布包身份的区别 |
+| [mjx/mujoco/mjx/warp/__init__.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/warp/__init__.py) | E5：Warp runtime与树内vendored模块的实际导入 |
+| [mjx/mujoco/mjx/warp/ffi.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/warp/ffi.py) | E5：custom-vmap参数形状、batch合并与FFI传递 |
+| [mjx/mujoco/mjx/warp/forward.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/warp/forward.py) | E5：Warp step的custom-vmap与marshal入口 |
+| [mjx/mujoco/mjx/warp/types.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/warp/types.py) | E5：不参与普通vmap的共享contact池字段 |
+| [mjx/pyproject.toml](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/pyproject.toml) | E5：MJX包身份、未锁JAX/JAXlib与Warp extra的实际版本约束 |
+| [python/mujoco/rollout.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/python/mujoco/rollout.cc) | E5：每worker工作区、逐轨迹初始化、ctrl=None、warning填充与采样顺序 |
+| [python/mujoco/rollout.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/python/mujoco/rollout.py) | E5：CPU批量shape/连续化/广播、四项兼容性检查、线程池生命周期 |
+| [src/engine/engine_setconst.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_setconst.c) | E5：原生参数重算及对scratch Data的qpos修改 |
+
+E5也复读既有state枚举、copyData/reset、Python GIL与模型修改契约，区分mask数组、完整同进程复制及外部状态。另有独立[JAX来源清单](external-sources.json)：JAX0.7.2固定提交`94233144f5469af28c065aa4263a6849338eeaa1`，阅读api.py（jit/vmap/传输/等待）、random.py（key/split/fold_in）及三份官方JIT/随机数/dtype文档。该选择是语言/API阅读基线，不是经验证的MJX依赖锁；没有复制第三方实现进本仓。详情见[E5验收](validation/e5.md)。

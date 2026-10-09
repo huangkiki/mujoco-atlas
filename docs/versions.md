@@ -13,3 +13,5 @@
 固定文件身份不能证明整个引擎已审查，也不能证明候选二进制与源码具有相同构建配置。核心、绑定、插件和宿主身份分别记录。当前版本的默认值不用于补填 DexLab 历史配置。
 
 [DexLab](https://github.com/huangkiki/Dexlab) 保留实验版本与协议；本仓不修改或追认其结果。
+
+E5的JAX语言/API阅读基线单独固定为0.7.2、提交`94233144f5469af28c065aa4263a6849338eeaa1`，文件身份见[external-sources.json](external-sources.json)。MuJoCo树内MJX包与vendored Warp的实际身份、依赖约束见[MJX课程](mjx-and-device-data.md)；包声明的约束、源码阅读版本和实际运行环境是三种证据。本轮没有安装验证或生成运行锁文件。
