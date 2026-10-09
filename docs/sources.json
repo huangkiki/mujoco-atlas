@@ -102,6 +102,30 @@
     {
       "path": "src/xml/xml_native_reader.cc",
       "git_blob": "08ca77aeb794b77eb61897bab0dca713fbef099b"
+    },
+    {
+      "path": "src/engine/engine_init.c",
+      "git_blob": "c910c2602e6c1b4a89dfda38ea15c7a0eab1d390"
+    },
+    {
+      "path": "src/engine/engine_passive.c",
+      "git_blob": "93632bf15de57f71ab9afa5eeb02352c2daa1a99"
+    },
+    {
+      "path": "src/engine/engine_sensor.c",
+      "git_blob": "f7960fb6940e4b7ccaf8b4b8af25d0c6dc21a156"
+    },
+    {
+      "path": "src/engine/engine_derivative.c",
+      "git_blob": "e64c2017781a72073e6d6cfd8259878dc8e73d30"
+    },
+    {
+      "path": "src/engine/engine_derivative_fd.c",
+      "git_blob": "59b3ab5b828c703474917626a4ccf3233f96a277"
+    },
+    {
+      "path": "src/engine/engine_island.c",
+      "git_blob": "289f6881db6fae99cfa19fbf458932c9b6e2e7c5"
     }
   ]
 }

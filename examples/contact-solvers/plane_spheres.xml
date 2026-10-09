@@ -1,0 +1,22 @@
+<mujoco model="contact_reading">
+  <compiler angle="radian"/>
+  <option timestep="0.001" integrator="Euler" solver="Newton" cone="elliptic"
+          iterations="20" tolerance="1e-8" noslip_iterations="0"/>
+  <worldbody>
+    <geom name="ground" type="plane" size="1 1 0.1"
+          contype="1" conaffinity="0" margin="0.001" gap="0.003"
+          condim="6" friction="0.6 0.01 0.001"/>
+    <body name="near_sphere" pos="0 0 0.051">
+      <freejoint/>
+      <geom name="near_surface" type="sphere" size="0.05" mass="1"
+            contype="0" conaffinity="1" margin="0.001"
+            condim="3" friction="0.3 0.02 0.002"/>
+    </body>
+    <body name="gap_sphere" pos="0.4 0 0.054">
+      <freejoint/>
+      <geom name="gap_surface" type="sphere" size="0.05" mass="1"
+            contype="0" conaffinity="1" margin="0.001"
+            condim="3" friction="0.3 0.02 0.002"/>
+    </body>
+  </worldbody>
+</mujoco>

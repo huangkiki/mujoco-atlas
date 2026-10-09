@@ -40,3 +40,16 @@ E1 的结论、行锚、文档冲突与静态验收见[验证记录](validation/
 | [src/engine/engine_inverse.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_inverse.c) | E2：逆动力学所需总外加广义力，区分 IK 与控制分配 |
 
 E2 同时深入读取既有 `engine_forward.c` 的 actuation、`engine_core_smooth.c` 的 transmission、`engine_core_util.c` 的 Jacobian 与 `XMLreference.rst` 的原生契约，详见[验证记录](validation/e2.md)。
+
+## E3 动力学、接触、求解与力观测
+
+| 源码文件 | 阅读目的 |
+|---|---|
+| [src/engine/engine_init.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_init.c) | E3：默认 option/solref/solimp 与报告运行配置的区别 |
+| [src/engine/engine_passive.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_passive.c) | E3：geom adhesion 的被动力与净接触力账本 |
+| [src/engine/engine_sensor.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_sensor.c) | E3：touch 正法向/区域条件与 force/torque 的 site 变换；完整传感接口留 E4 |
+| [src/engine/engine_derivative.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_derivative.c) | E3：discrete 有效 metric、stiffness shift、coupling 限制与独立 free-body 陀螺项 |
+| [src/engine/engine_derivative_fd.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_derivative_fd.c) | E3：有限差分状态维度、恢复与 RK4/history/sleep 限制 |
+| [src/engine/engine_island.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_island.c) | E3：树/约束及 discrete tendon/flex metric 耦合的岛建图 |
+
+E3 同时逐段核对既有 forward/collision/constraint/solver/core_smooth/core_util 与数据头文件，覆盖 CRB/RNE、几何与材料混合、primal/dual、停止条件、warmstart、积分与 contactForce。来源冲突、实际检查和扩展范围见[验证记录](validation/e3.md)。
