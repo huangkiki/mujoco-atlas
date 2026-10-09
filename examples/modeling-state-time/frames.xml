@@ -1,0 +1,31 @@
+<mujoco model="atlas_frames">
+  <compiler angle="radian" inertiafromgeom="auto"/>
+  <option timestep="0.002" integrator="implicitfast"/>
+  <default>
+    <geom contype="0" conaffinity="0" rgba="0.3 0.6 0.8 1"/>
+  </default>
+  <worldbody>
+    <body name="floating_box" pos="0 0 0.5">
+      <freejoint name="floating" align="false"/>
+      <inertial pos="0.02 0 0" mass="1"
+                diaginertia="0.0016666667 0.0041666667 0.0041666667"/>
+      <geom name="box_visual" type="box" pos="0.02 0 0" size="0.10 0.05 0.05"/>
+      <site name="box_tip" pos="0.12 0 0" size="0.005"/>
+    </body>
+    <body name="carriage" pos="0.4 0 0.2">
+      <joint name="slide" type="slide" axis="1 0 0"/>
+      <joint name="hinge" type="hinge" axis="0 1 0" range="-1 1"/>
+      <geom type="box" size="0.03 0.03 0.03" mass="0.2"/>
+      <body name="ball_link" pos="0 0 0.1">
+        <joint name="ball" type="ball"/>
+        <geom type="capsule" size="0.015 0.05" mass="0.1"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="hinge_motor" joint="hinge" gear="1"/>
+  </actuator>
+  <keyframe>
+    <key name="reference"/>
+  </keyframe>
+</mujoco>

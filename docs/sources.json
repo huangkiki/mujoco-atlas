@@ -46,6 +46,42 @@
     {
       "path": "python/mujoco/renderer.py",
       "git_blob": "a8bb1a1843e17962846641c4bdd3f1463bb95b63"
+    },
+    {
+      "path": "doc/XMLreference.rst",
+      "git_blob": "656c62d78dd852439695648e68199e1ee021ee51"
+    },
+    {
+      "path": "doc/python.rst",
+      "git_blob": "a0be51fcba2780c55aecb31ba98235e7b64cf443"
+    },
+    {
+      "path": "include/mujoco/mjtype.h",
+      "git_blob": "2b01928972a057639902e2773c855ab6a6a52421"
+    },
+    {
+      "path": "include/mujoco/mujoco.h",
+      "git_blob": "20b1790fbd5f074edde115b609d6d5008696b8d5"
+    },
+    {
+      "path": "src/engine/engine_core_smooth.c",
+      "git_blob": "93db3b84751ce94ffdbac8ef693a97cf912567c5"
+    },
+    {
+      "path": "src/engine/engine_core_util.c",
+      "git_blob": "f075597be9a4ade386234c5758ab4e2c5880ab6d"
+    },
+    {
+      "path": "src/engine/engine_io.c",
+      "git_blob": "5df91af4556d843ba4c6dac84f2e19d203214f99"
+    },
+    {
+      "path": "src/engine/engine_support.c",
+      "git_blob": "2e4e25fbe9a6aa47471a2add1e97911dc38e7d7a"
+    },
+    {
+      "path": "src/engine/engine_util_spatial.c",
+      "git_blob": "e79487d407dc2b62fa17fefbbac8d26b46bab84b"
     }
   ]
 }
