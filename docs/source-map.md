@@ -28,3 +28,15 @@
 | [src/engine/engine_util_spatial.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_util_spatial.c) | E1：右乘局部旋转增量的四元数积分 |
 
 E1 的结论、行锚、文档冲突与静态验收见[验证记录](validation/e1.md)。文件身份核对与专题逐段阅读分开记录，未读部分不据此宣称已掌握。
+
+## E2 驱动、机器人与任务接口
+
+| 源码文件 | 阅读目的 |
+|---|---|
+| [src/user/user_api.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/user/user_api.cc) | E2：motor/position/velocity/PID/orientation shortcut 写入的 gain/bias/dynamics 参数 |
+| [src/user/user_objects.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/user/user_objects.cc) | E2：joint 限位、SO3/PID 兼容性、输入宽度与逐输入控制范围编译 |
+| [src/xml/xml_native_reader.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/xml/xml_native_reader.cc) | E2：XML actuator 类型到原生 mjs_setTo* 的解析路径 |
+| [src/engine/engine_callback.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_callback.c) | E2：进程级全局 mjcb_control 的所有权与重置 |
+| [src/engine/engine_inverse.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_inverse.c) | E2：逆动力学所需总外加广义力，区分 IK 与控制分配 |
+
+E2 同时深入读取既有 `engine_forward.c` 的 actuation、`engine_core_smooth.c` 的 transmission、`engine_core_util.c` 的 Jacobian 与 `XMLreference.rst` 的原生契约，详见[验证记录](validation/e2.md)。

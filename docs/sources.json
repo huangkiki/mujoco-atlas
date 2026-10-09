@@ -82,6 +82,26 @@
     {
       "path": "src/engine/engine_util_spatial.c",
       "git_blob": "e79487d407dc2b62fa17fefbbac8d26b46bab84b"
+    },
+    {
+      "path": "src/engine/engine_callback.c",
+      "git_blob": "1983ed2c325d73f2f9d2999bde88aff1f8dd3c15"
+    },
+    {
+      "path": "src/engine/engine_inverse.c",
+      "git_blob": "d7c6e5924f827be536ef7e822c64d6384317c591"
+    },
+    {
+      "path": "src/user/user_api.cc",
+      "git_blob": "7f3e21b01bdf7cdfd43f9f325c3ac8e6f0a594b9"
+    },
+    {
+      "path": "src/user/user_objects.cc",
+      "git_blob": "71e1a83e63843f7b42679a6f423d2d1f575e80eb"
+    },
+    {
+      "path": "src/xml/xml_native_reader.cc",
+      "git_blob": "08ca77aeb794b77eb61897bab0dca713fbef099b"
     }
   ]
 }

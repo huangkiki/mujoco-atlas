@@ -1,0 +1,26 @@
+<mujoco model="atlas_two_link">
+  <compiler angle="radian" autolimits="true"/>
+  <option timestep="0.002" gravity="0 0 0" integrator="implicitfast"/>
+  <default>
+    <joint type="hinge" axis="0 0 1" range="-2.5 2.5" damping="0.02"/>
+    <geom type="capsule" size="0.015" contype="0" conaffinity="0"/>
+  </default>
+  <worldbody>
+    <body name="upper" pos="0 0 0.2">
+      <joint name="shoulder" actuatorfrcrange="-6 6"/>
+      <geom fromto="0 0 0 0.25 0 0" mass="0.4"/>
+      <body name="forearm" pos="0.25 0 0">
+        <joint name="elbow" actuatorfrcrange="-1.2 1.2"/>
+        <geom fromto="0 0 0 0.2 0 0" mass="0.3"/>
+        <site name="tip" pos="0.2 0 0" size="0.005"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <pid name="shoulder_servo" joint="shoulder" input="pos vel"
+         kp="20" kv="2" posrange="-1.8 1.8" velrange="-1 1"
+         forcerange="-4 4"/>
+    <motor name="elbow_motor" joint="elbow" gear="2"
+           ctrlrange="-1 1" forcerange="-0.8 0.8"/>
+  </actuator>
+</mujoco>
