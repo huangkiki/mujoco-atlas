@@ -1,0 +1,51 @@
+{
+  "upstream": "google-deepmind/mujoco",
+  "commit": "9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5",
+  "scope": "source study; no simulation experiments or performance claims",
+  "files": [
+    {
+      "path": "include/mujoco/mjmodel.h",
+      "git_blob": "ccad8628a6caa19d51de57ba01421588681e6cc6"
+    },
+    {
+      "path": "include/mujoco/mjdata.h",
+      "git_blob": "ef0abfbbeaeda706c84b20782ca712e45e529926"
+    },
+    {
+      "path": "src/engine/engine_forward.c",
+      "git_blob": "780c35f52518f2cbca51606bde9d3db5496539d7"
+    },
+    {
+      "path": "src/engine/engine_solver.c",
+      "git_blob": "274f90fde21eb9b1de9e4d4e5beb0fc6ce232f88"
+    },
+    {
+      "path": "src/engine/engine_collision_driver.c",
+      "git_blob": "7e3a92c1f46eb7feb56d6d19a7dfddffd5bc1e19"
+    },
+    {
+      "path": "src/engine/engine_core_constraint.c",
+      "git_blob": "9022b88bc301bdab26bbb7a1854aab395f05a6eb"
+    },
+    {
+      "path": "doc/programming/simulation.rst",
+      "git_blob": "31baf87103d64804481b0019c9a43985dbc310a0"
+    },
+    {
+      "path": "doc/programming/modeledit.rst",
+      "git_blob": "e0c9fb0f4647325275bf0bb4f6030e2477a5a5bd"
+    },
+    {
+      "path": "doc/modeling.rst",
+      "git_blob": "022eb5e2b536dad51229462197baa1ebb3a89562"
+    },
+    {
+      "path": "doc/computation/index.rst",
+      "git_blob": "6252087ba41e3a51c3a24208ee5060dfd0ba3171"
+    },
+    {
+      "path": "python/mujoco/renderer.py",
+      "git_blob": "a8bb1a1843e17962846641c4bdd3f1463bb95b63"
+    }
+  ]
+}
