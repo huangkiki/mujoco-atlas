@@ -12,7 +12,7 @@
 | A3 | 驱动与控制 | 状态设置与控制命令、驱动器、饱和、PD、回调与控制频率 | [E2 已交付](actuation-and-control.md)，源码/静态验收 |
 | A4 | 接触 API | 碰撞过滤、接触观测、摩擦/恢复/柔顺参数的原生语义 | [E3 已交付](contact-models.md)，含[力读数](force-observations.md)；源码/静态验收 |
 | A5 | 机器人与运动学 | 模型导入、关节映射、FK/IK、限位、约束、外部控制集成 | [E2 已交付](robotics-and-kinematics.md)，含 E1 导入基础；IK 片段未运行 |
-| A6 | 传感器与渲染 | RGB/depth/分割/射线/力/触觉、坐标/单位/更新阶段、GUI/headless | 专题待开发 |
+| A6 | 传感器与渲染 | RGB/depth/分割/射线/力/触觉、坐标/单位/更新阶段、GUI/headless | [E4 传感采样](sensors-and-sampling.md)、[相机查询](cameras-and-geometry-queries.md)、[渲染/viewer](rendering-and-viewer.md)已交付；源码/静态验收，无图像或设备运行验收 |
 | A7 | 任务编排 | 接近/闭合/保持/释放的控制接口与状态机设计，后续引用 DexLab 案例 | [E2 接口设计已交付](task-interfaces.md)；无抓取实验，后续复用 DexLab |
 | A8 | 并行与学习接口 | CPU/GPU、批量隔离、reset/step、终止/截断、随机种子和官方学习接口 | 专题待开发 |
 | A9 | 数据与 sim-to-real | 状态/观测导出、时间戳、元数据、回放、随机化及模型差距 | 专题待开发 |
@@ -28,3 +28,5 @@
 本引擎特别关注：MJCF、mjSpec/mjModel/mjData、驱动器与约束、flex/IPC、原生与 GPU 后端。各课需提供先修、概念/公式、原生接口与固定源码、易错点、阅读练习和适用边界。实验不作为本阶段先决条件；后续复用 DexLab，避免重新建设一套评分和基准系统。
 
 E3 交付的是原生核心的动力学、软接触、三类求解器与五种积分器主线；本版 flex/IPC 兼容性有明确入口，但其弹性/IPC 内循环和 GPU 后端实现仍属 B6/E6，不能把主线课程完成当作这些扩展已完成。
+
+E4 完成 A6 主线，包含 history 时序、contact/tactile 布局、版本特定相机差异和 classic 资源生命周期；Filament 仅交代其独立原生接口，不把它的完整后端实现、设备支持或性能研究提前计入 E6。E5 的学习数据流水线仍待独立开发。

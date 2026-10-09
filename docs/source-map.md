@@ -16,7 +16,7 @@
 | [doc/programming/modeledit.rst](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/doc/programming/modeledit.rst) | 核对对象职责、数据布局、参数与版本约定 |
 | [doc/modeling.rst](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/doc/modeling.rst) | 核对对象职责、数据布局、参数与版本约定 |
 | [doc/computation/index.rst](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/doc/computation/index.rst) | 核对对象职责、数据布局、参数与版本约定 |
-| [python/mujoco/renderer.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/python/mujoco/renderer.py) | 区分传感数据、可视化与物理状态 |
+| [python/mujoco/renderer.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/python/mujoco/renderer.py) | E4：旧路径仅兼容转发；实际 classic 实现在下方新模块 |
 | [doc/XMLreference.rst](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/doc/XMLreference.rst) | E1：编译选项、局部坐标、inertial、freejoint align、mesh/URDF 与资产语义 |
 | [doc/python.rst](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/doc/python.rst) | E1：原生绑定的内存视图、命名访问、GIL、nstep 与重编译生命周期 |
 | [include/mujoco/mjtype.h](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/include/mujoco/mjtype.h) | E1：mjtState 的 3.15.0 准确枚举与 history/integration 组合 |
@@ -47,9 +47,29 @@ E2 同时深入读取既有 `engine_forward.c` 的 actuation、`engine_core_smoo
 |---|---|
 | [src/engine/engine_init.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_init.c) | E3：默认 option/solref/solimp 与报告运行配置的区别 |
 | [src/engine/engine_passive.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_passive.c) | E3：geom adhesion 的被动力与净接触力账本 |
-| [src/engine/engine_sensor.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_sensor.c) | E3：touch 正法向/区域条件与 force/torque 的 site 变换；完整传感接口留 E4 |
+| [src/engine/engine_sensor.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_sensor.c) | E3：touch 正法向/区域条件与 force/torque 的 site 变换；完整传感接口已在 E4 展开 |
 | [src/engine/engine_derivative.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_derivative.c) | E3：discrete 有效 metric、stiffness shift、coupling 限制与独立 free-body 陀螺项 |
 | [src/engine/engine_derivative_fd.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_derivative_fd.c) | E3：有限差分状态维度、恢复与 RK4/history/sleep 限制 |
 | [src/engine/engine_island.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_island.c) | E3：树/约束及 discrete tendon/flex metric 耦合的岛建图 |
 
 E3 同时逐段核对既有 forward/collision/constraint/solver/core_smooth/core_util 与数据头文件，覆盖 CRB/RNE、几何与材料混合、primal/dual、停止条件、warmstart、积分与 contactForce。来源冲突、实际检查和扩展范围见[验证记录](validation/e3.md)。
+
+## E4 传感、相机、查询与渲染
+
+| 源码文件 | 阅读目的 |
+|---|---|
+| [doc/programming/visualization.rst](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/doc/programming/visualization.rst) | E4：mjv/mjr 分层、相机、scene、OpenGL context 和 GPU 资源契约 |
+| [python/mujoco/__init__.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/python/mujoco/__init__.py) | E4：公开 Renderer 的实际导入以及 ImportError 边界 |
+| [python/mujoco/rendering/classic/renderer.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/python/mujoco/rendering/classic/renderer.py) | E4：真实 classic RGB/depth/segmentation shape、深度反变换、资源生命周期 |
+| [python/mujoco/rendering/classic/gl_context.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/python/mujoco/rendering/classic/gl_context.py) | E4：导入时 MUJOCO_GL 选择器；headless 与 context 禁用的区别 |
+| [python/mujoco/rendering/filament/renderer.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/python/mujoco/rendering/filament/renderer.py) | E4：独立 Context/scene/target/view、CPU buffer、同步读回契约 |
+| [python/mujoco/viewer.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/python/mujoco/viewer.py) | E4：launch/passive、macOS 主线程、handle 的 sync/lock/upload/close |
+| [simulate/simulate.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/simulate/simulate.cc) | E4：passive sync 的显示副本、INTEGRATION+forward 和 GUI 输入回传 |
+| [src/engine/engine_ray.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_ray.c) | E4：射线过滤、非单位方向参数、mesh/primitive/SDF 分派 |
+| [src/engine/engine_util_misc.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_util_misc.c) | E4：像素中心/正交射线、history 边界钳位与插值 |
+| [src/engine/engine_vis_init.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_vis_init.c) | E4：可视化 scene 的容量与资源分配/释放 |
+| [src/engine/engine_vis_visualize.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_vis_visualize.c) | E4：camera frustum、scene maxgeom 溢出、updateScene 只消费派生缓存 |
+| [src/render/classic/render_gl3.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/render/classic/render_gl3.c) | E4：classic 视口宽高比与透视/正交投影 |
+| [src/engine/engine_collision_sdf.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_collision_sdf.c) | E4：tactile 依赖的形状距离分派及不支持类型 |
+
+E4 同时深入读取既有 engine_sensor 的内置/用户/plugin 分派、contact/tactile 和 history，user_api/user_objects 的维度/阶段/内参编译，以及 support/forward 的查询和历史读写。文档/实现差异与真实静态验收见[验证记录](validation/e4.md)。只下载但未作为结论依据的文件没有冒充已完成专题。

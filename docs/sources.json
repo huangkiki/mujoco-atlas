@@ -126,6 +126,58 @@
     {
       "path": "src/engine/engine_island.c",
       "git_blob": "289f6881db6fae99cfa19fbf458932c9b6e2e7c5"
+    },
+    {
+      "path": "doc/programming/visualization.rst",
+      "git_blob": "9b9ef5167f5453929567ff6c3e33f0f0133e2701"
+    },
+    {
+      "path": "python/mujoco/__init__.py",
+      "git_blob": "54e37fb1504a41faebcd0865d62f0c6ffa7ace77"
+    },
+    {
+      "path": "python/mujoco/rendering/classic/gl_context.py",
+      "git_blob": "e066887e3eecea90d9170c6b6e5147c4357026d3"
+    },
+    {
+      "path": "python/mujoco/rendering/classic/renderer.py",
+      "git_blob": "a48c38655babe3da755065806b488cec077e8b9f"
+    },
+    {
+      "path": "python/mujoco/rendering/filament/renderer.py",
+      "git_blob": "f7e0284bd90869ef1025c8c63949875b80cdf507"
+    },
+    {
+      "path": "python/mujoco/viewer.py",
+      "git_blob": "e75d295d0952dfe44de014bff87be966b49805c1"
+    },
+    {
+      "path": "simulate/simulate.cc",
+      "git_blob": "cc94fb14fc52d4dd322ff4f2750ca325513cfd4a"
+    },
+    {
+      "path": "src/engine/engine_ray.c",
+      "git_blob": "056d2f860b7ca2a500f60c66bfae41a10d0ba007"
+    },
+    {
+      "path": "src/engine/engine_util_misc.c",
+      "git_blob": "f78a8d6db24b525bef3b40195e162537159e1d6b"
+    },
+    {
+      "path": "src/engine/engine_vis_init.c",
+      "git_blob": "5f8a50eb4432a19ee898052677c8dc950c028746"
+    },
+    {
+      "path": "src/engine/engine_vis_visualize.c",
+      "git_blob": "dfb90ee7869a36b6e70c7c3cb07517afaeef115c"
+    },
+    {
+      "path": "src/render/classic/render_gl3.c",
+      "git_blob": "f7b085e85d3b821f072575d4c8807071a3bbb493"
+    },
+    {
+      "path": "src/engine/engine_collision_sdf.c",
+      "git_blob": "dc896364f6caca9f39d86e2c872500737f8d7416"
     }
   ]
 }
