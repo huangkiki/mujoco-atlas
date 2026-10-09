@@ -98,3 +98,36 @@ E4 同时深入读取既有 engine_sensor 的内置/用户/plugin 分派、conta
 | [src/engine/engine_setconst.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_setconst.c) | E5：原生参数重算及对scratch Data的qpos修改 |
 
 E5也复读既有state枚举、copyData/reset、Python GIL与模型修改契约，区分mask数组、完整同进程复制及外部状态。另有独立[JAX来源清单](external-sources.json)：JAX0.7.2固定提交`94233144f5469af28c065aa4263a6849338eeaa1`，阅读api.py（jit/vmap/传输/等待）、random.py（key/split/fold_in）及三份官方JIT/随机数/dtype文档。该选择是语言/API阅读基线，不是经验证的MJX依赖锁；没有复制第三方实现进本仓。详情见[E5验收](validation/e5.md)。
+
+## E6 扩展、特色机制与能力边界
+
+| 源码文件 | 阅读目的 |
+|---|---|
+| [doc/computation/fluid.rst](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/doc/computation/fluid.rst) | E6：惯性盒/ellipsoid力的假设、量纲与参数；实际added-mass分支另核代码 |
+| [doc/programming/extension.rst](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/doc/programming/extension.rst) | E6：定义/实例/状态的概念契约，旧插件/资源描述按当前实现限定 |
+| [include/mujoco/mjplugin.h](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/include/mujoco/mjplugin.h) | E6：四种能力、生命周期回调、当前decoder/resource接口 |
+| [include/mujoco/mjspec.h](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/include/mujoco/mjspec.h) | E6：elastic3d的mjSpec-only身份 |
+| [mjx/mujoco/mjx/__init__.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/__init__.py) | E6：公开step/forward直接导出，AD追踪的入口 |
+| [mjx/mujoco/mjx/_src/collision_driver.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/_src/collision_driver.py) | E6：静态候选分组与每组top_k接触筛选 |
+| [mjx/mujoco/mjx/_src/constraint.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/_src/constraint.py) | E6：mask行、efc数组与CPU动态约束数量的区别 |
+| [mjx/mujoco/mjx/_src/solver.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/_src/solver.py) | E6：CG/Newton、Hessian、局部scan与外层while_loop |
+| [mjx/mujoco/mjx/third_party/mujoco_warp/_src/history.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/third_party/mujoco_warp/_src/history.py) | E6：真实delay/interval、缓存插入与reset时序 |
+| [mjx/mujoco/mjx/third_party/mujoco_warp/_src/sensor.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/third_party/mujoco_warp/_src/sensor.py) | E6：POS/VEL/ACC对history处理的实际接入 |
+| [mjx/mujoco/mjx/third_party/mujoco_warp/_src/solver.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/third_party/mujoco_warp/_src/solver.py) | E6：逐世界context、CG归约、增量Newton与条件图循环 |
+| [mjx/mujoco/mjx/third_party/mujoco_warp/_src/types.py](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/mjx/mujoco/mjx/third_party/mujoco_warp/_src/types.py) | E6：后端solver/integrator/flags支持列表，与CPU枚举分开 |
+| [plugin/actuator/pid.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/plugin/actuator/pid.cc) | E6：act积分/slew状态、advance为空及单输入索引适用范围 |
+| [plugin/elasticity/cable.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/plugin/elasticity/cable.cc) | E6：刚体链曲率力与实际生命周期 |
+| [plugin/elasticity/register.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/plugin/elasticity/register.cc) | E6：当前只注册Cable，不能沿用旧Solid/Membrane可用性描述 |
+| [python/mujoco/callbacks.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/python/mujoco/callbacks.cc) | E6：Python注册对象、GIL/mutex与trampoline，不等于线程局部控制器 |
+| [src/engine/engine_collision_continuous.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_collision_continuous.c) | E6：IPC支持几何/过滤、swept候选与保守推进边界 |
+| [src/engine/engine_collision_flex.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_collision_flex.c) | E6：flex几何与顶点/元素碰撞结构 |
+| [src/engine/engine_ipc.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_ipc.c) | E6：barrier-free AL、单次内层CG、CCD、部分推进与sensor重算 |
+| [src/engine/engine_plugin.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_plugin.cc) | E6：全局注册身份、属性复制和注册验证范围 |
+| [src/engine/engine_util_errmem.c](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/engine/engine_util_errmem.c) | E6：mju_warning日志与Data warning计数的区别 |
+| [src/user/user_flexcomp.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/user/user_flexcomp.cc) | E6：full点body/质量/关节、pin到父body的建模展开 |
+| [src/user/user_mesh.cc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/user/user_mesh.cc) | E6：StVK/SNH系数、插值壳弯曲、材料限制与SDF编译调用 |
+| [src/xml/generated/mjcf_read_table.inc](https://github.com/google-deepmind/mujoco/blob/9ea3cdfcae93bf2cc4dc0e1a1627c5a39a1e06e5/src/xml/generated/mjcf_read_table.inc) | E6：当前elasticity XML字段；无elastic3d同名属性 |
+
+E6同时深入复读既有engine_io的plugin init/reset/copy/destroy、forward提交/组合检查、passive的弹性/流体与力账本、core_smooth的flex运动映射、derivative的PSD切线和FD状态空间；MJX包装及vendored Warp的history初始化与FFI传递分别核对。来源不一致时以同一固定树的实际调用链限定结论。
+
+外部JAX仍为0.7.2固定提交：新增[jax/_src/lax/control_flow/loops.py](https://github.com/jax-ml/jax/blob/94233144f5469af28c065aa4263a6849338eeaa1/jax/_src/lax/control_flow/loops.py#L1606-L1645)，只核对while_loop的变换规则；与公开MJX step→forward→solver链合看，不把语言规则外推全部后端。清单见[external-sources.json](external-sources.json)，实际静态检查和未运行边界见[E6验收](validation/e6.md)。

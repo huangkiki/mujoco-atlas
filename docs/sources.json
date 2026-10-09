@@ -250,6 +250,102 @@
     {
       "path": "src/engine/engine_setconst.c",
       "git_blob": "19a0b2236510261b580748672d49ad308924f08f"
+    },
+    {
+      "path": "doc/computation/fluid.rst",
+      "git_blob": "6248a3c3d5208fbce8fcb792cbe10caa37bf96be"
+    },
+    {
+      "path": "doc/programming/extension.rst",
+      "git_blob": "3af6886d586fec6edac36302b40ffabdf9c9b388"
+    },
+    {
+      "path": "include/mujoco/mjplugin.h",
+      "git_blob": "9a13f6a8d5e3be1b12e3649a6e958424eb6598a2"
+    },
+    {
+      "path": "include/mujoco/mjspec.h",
+      "git_blob": "3d56e8cf3b66b2b5d0b60bb1f1fe8dcda7702bef"
+    },
+    {
+      "path": "mjx/mujoco/mjx/__init__.py",
+      "git_blob": "b97abb4beaa950fd558b391e11acf698668adef1"
+    },
+    {
+      "path": "mjx/mujoco/mjx/_src/collision_driver.py",
+      "git_blob": "83bf1fe743bbf0c4fff80e9641ba85c05983c84c"
+    },
+    {
+      "path": "mjx/mujoco/mjx/_src/constraint.py",
+      "git_blob": "4c5bc298ba7703f0fac0dda7824acd24fdffc1a3"
+    },
+    {
+      "path": "mjx/mujoco/mjx/_src/solver.py",
+      "git_blob": "5bbd0220629243edfe3949063c34be9c735e9dfe"
+    },
+    {
+      "path": "mjx/mujoco/mjx/third_party/mujoco_warp/_src/history.py",
+      "git_blob": "31d0aeafc29e2249a0e8939aae5ac39c55fe298e"
+    },
+    {
+      "path": "mjx/mujoco/mjx/third_party/mujoco_warp/_src/sensor.py",
+      "git_blob": "c45483a203a5edab4fef966a57fc90f570f8d1bb"
+    },
+    {
+      "path": "mjx/mujoco/mjx/third_party/mujoco_warp/_src/solver.py",
+      "git_blob": "f1bac3fb590c70aa29c252c9f7477095f9b75d52"
+    },
+    {
+      "path": "mjx/mujoco/mjx/third_party/mujoco_warp/_src/types.py",
+      "git_blob": "d2c682313b2d18b37ca28487e4928e6900ac75d0"
+    },
+    {
+      "path": "plugin/actuator/pid.cc",
+      "git_blob": "f04d9df2032b4dcdaa74741b56f63ed31439266a"
+    },
+    {
+      "path": "plugin/elasticity/cable.cc",
+      "git_blob": "6656b31a6f0cb489eb7586e5798f5a9d5b4437b0"
+    },
+    {
+      "path": "plugin/elasticity/register.cc",
+      "git_blob": "2808932ce0c6da97b5bd7747e5e65d01cd609230"
+    },
+    {
+      "path": "python/mujoco/callbacks.cc",
+      "git_blob": "a157aa55a773232888099302e6a0bc1a11f77933"
+    },
+    {
+      "path": "src/engine/engine_collision_continuous.c",
+      "git_blob": "502a1a1544303589a9ecf6e16bb2d717137e001c"
+    },
+    {
+      "path": "src/engine/engine_collision_flex.c",
+      "git_blob": "c52983f6dc832082f0aa21d02c25868f9e0241e3"
+    },
+    {
+      "path": "src/engine/engine_ipc.c",
+      "git_blob": "3b2cf3c37fd82b2225469456e9acbe47aa9c1bb7"
+    },
+    {
+      "path": "src/engine/engine_plugin.cc",
+      "git_blob": "87b05d2670477fd333762ba7b8f37621cb61ad43"
+    },
+    {
+      "path": "src/engine/engine_util_errmem.c",
+      "git_blob": "f3496b38d17ceab14b4f32b268af8a029248b009"
+    },
+    {
+      "path": "src/user/user_flexcomp.cc",
+      "git_blob": "7cae3b1973025b519a1eab80214c79e2e7dfae35"
+    },
+    {
+      "path": "src/user/user_mesh.cc",
+      "git_blob": "05622726942d321cc09b50047410d631ab995568"
+    },
+    {
+      "path": "src/xml/generated/mjcf_read_table.inc",
+      "git_blob": "98e42d9c42498fcb08627eab21ae487aefd6ca3d"
     }
   ]
 }
